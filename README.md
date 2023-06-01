@@ -7,6 +7,10 @@ SSH keys created by the RasberryPi, which are included in this repository.
   - git add [file/directory]
   - git commit -m "$message" file/directory
   - git push -u origin main
+- Ssh_key
+  - eval "$(ssh-agent)"
+  - ssh-agent -s 
+  - ssh-add ~/.ssh/key
 - Config files:
   - The dhcpcd.conf is used to set the RPi up as a wifi access point. The file should be moved to \etc\dhcpcd.conf on the RPI. 
   - An assumption is that the wifi client is disabled in wpa_supplicant.conf. 
