@@ -1,0 +1,32 @@
+#!/bin/bash
+
+command=$1
+
+base_url="http://192.168.10.222/led/"
+
+case $command in
+  redon)
+    url="${base_url}red/on"
+    ;;
+  redoff)
+    url="${base_url}red/off"
+    ;;
+  yellowon)
+    url="${base_url}yellow/on"
+    ;;
+  yellowoff)
+    url="${base_url}yellow/off"
+    ;;
+  greenon)
+    url="${base_url}green/on"
+    ;;
+  greenoff)
+    url="${base_url}green/off"
+    ;;
+   *)
+    echo "Invalid command."
+    exit 1
+    ;;
+esac
+
+curl "$url"

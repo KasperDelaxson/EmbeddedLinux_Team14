@@ -1,0 +1,26 @@
+#!/bin/bash
+
+read input
+
+current_timestamp=$(date +%s)
+
+IFS=" " read -ra  <<< "$string"
+
+echo ${topic_payload[0]}
+
+if [ -f "last_water.txt" ]; then
+    last_water=$(cat "last_water.txt")
+else
+    last_water=0
+fi
+
+time_difference=$((current_timestamp - last_water))
+
+if [ "$time_difference" -gt 3600 ]; then
+    # Process the message since the last activation was more than 1 hour ago
+    echo "Processing message: $1"
+    # Update the last activation timestamp
+    echo "$current_timestamp" > "last_water.txt"
+else
+    echo "Skipping message: $1"
+fi
