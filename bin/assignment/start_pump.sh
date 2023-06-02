@@ -17,6 +17,10 @@ bash ./sub_mqtt_topic.sh +/pump -v | while read -r message; do
 		file=./humidity_control_pump/water_timestamps/last_water_${id}.txt
 		bash publish_mqtt_message.sh "$id/pump/activation" "$current_timestamp"
 		echo "$current_timestamp" > "${file}"
+		echo "pump started"
+		continue 1
 	fi
+
+	echo 0
 done
 

@@ -8,7 +8,7 @@ bash ./sub_mqtt_topic.sh +/alarm/+ -v | while read -r message; do
 	id=${split_topic[0]}
 
        if [ "$alarm" = "1" ]; then
-		file=./status/${id}.txt
+		file=./alarm/status/${id}.txt
 		echo "$alarm" > "$file"
 	fi 
 done

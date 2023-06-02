@@ -16,6 +16,7 @@ if ! [[ $humidity =~ $re ]] ; then
 fi
 
 if [ "20" -lt "${humidity}" ]; then
+	echo 0
 	continue 1
 fi
 
@@ -33,5 +34,8 @@ time_difference=$((current_timestamp - last_water))
 if [ "$time_difference" -gt 3600 ]; then
     echo "publish"
     bash publish_mqtt_message.sh "${id}/pump" p
+    continue 1
 fi
+
+echo "pump started within the hour"
 done

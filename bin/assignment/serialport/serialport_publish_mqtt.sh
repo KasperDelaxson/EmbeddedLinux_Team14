@@ -36,4 +36,3 @@ echo $line
     bash ./set_led.sh green
     sleep 4
 done
-#< < (cat /dev/ttyACM0)
