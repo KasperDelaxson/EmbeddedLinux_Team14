@@ -14,6 +14,7 @@ bash ./sub_mqtt_topic.sh +/pump -v | while read -r message; do
 	if [ "$status" = "0" ]; then
     		echo p > /dev/ttyACM0
 		current_timestamp=$(date +%s)
+		echo "$current_timestamp"
 		file=./humidity_control_pump/water_timestamps/last_water_${id}.txt
 		bash publish_mqtt_message.sh "$id/pump/activation" "$current_timestamp"
 		echo "$current_timestamp" > "${file}"
