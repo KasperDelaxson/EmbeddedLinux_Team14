@@ -12,7 +12,7 @@
             padding: 0;
         }
 
- h1 {
+        h1 {
             text-align: center;
             padding: 20px;
             background-color: #333;
