@@ -11,11 +11,11 @@ if [[ $button_count -eq 2 ]]; then
 
   if [[ $new_button_count -eq 0 ]]; then
     bash set_led.sh greenon
+    bash publish_mqtt_message.sh "$serialnumber/sensor/pushbutton" "$message"
   fi
 fi
 
-bash publish_mqtt_message.sh "$serialnumber/sensor/pushbutton" "$message"
-sleep 2
+sleep 1
 bash set_led.sh greenoff
 sleep 1
 done
