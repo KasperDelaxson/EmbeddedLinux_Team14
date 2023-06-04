@@ -23,7 +23,7 @@ set_led() {
                 ;;
         esac
 
-        curl "$url"  # Perform the curl request
+        curl "$url" 
 }
 
 for state in "${states[@]}"
