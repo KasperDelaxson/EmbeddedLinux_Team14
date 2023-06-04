@@ -12,7 +12,7 @@
             padding: 0;
         }
 
-        h1 {
+ h1 {
             text-align: center;
             padding: 20px;
             background-color: #333;
@@ -74,15 +74,16 @@
     <table>
         <tr>
             <th>Time</th>
-            <th>Device</th>
+            <th>Response</th>
             <th>Topic</th>
-            <th>Log</th>
+            <th>Value</th>
         </tr>
         <?php
 	ini_set('display_errors', 1);
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
         
+	// Include InfluxDBConnection.php
         require_once 'influxDBConnection.php';
 
 	foreach ($values as $key => $value) {
@@ -107,16 +108,22 @@
 
 	usort($values, "compareDate");
 
+        // Number of records per page
         $recordsPerPage = 100;
 	
+	// Current page number
         $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
 
+        // Calculate the offset
         $offset = ($currentPage - 1) * $recordsPerPage;
 	
+	//Get the total number of records
         $totalRecords = count($values);
 
+        // Calculate the total number of pages
         $totalPages = ceil($totalRecords / $recordsPerPage);
 
+        // Get the records for the current page
         $currentPageRecords = array_slice($values, $offset, $recordsPerPage);
 	foreach ($currentPageRecords as $data) {
             $time = toFormat($data[0]);
@@ -134,8 +141,10 @@
         ?>
     </table>
 
+    <!-- Pagination links -->
     <div class="pagination">
         <?php
+        // Generate pagination links
         for ($i = 1; $i <= $totalPages; $i++) {
             echo '<a href="?page=' . $i . '" ' . ($i == $currentPage ? 'class="active"' : '') . '>' . $i . '</a>';
         }

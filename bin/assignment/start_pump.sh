@@ -6,7 +6,6 @@ bash ./sub_mqtt_topic.sh +/pump -v | while read -r message; do
 
 	IFS="/" read -ra split_topic <<< "${topic_payload[0]}"
 
-	humidity=${topic_payload[1]}
 	id=${split_topic[0]}
 	file=./alarm/status/$id.txt
 	status=$(cat "${file}")
